@@ -101,6 +101,7 @@ exports.auth = function (req,res)
                                 let expiresIn = { expiresIn: 86400 };
                                 let token = jwt.sign(payload, secret, expiresIn);
                                 delete user.password
+                                io.emit('LOGGED_IN_USER',user);
                                 res.status(200).json({"accessToken": token, "currentUser": user})
                                 }
                                 
